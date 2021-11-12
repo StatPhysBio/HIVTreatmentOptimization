@@ -1,0 +1,1137 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     45720,       1129]
+NotebookOptionsPosition[     42105,       1068]
+NotebookOutlinePosition[     42440,       1083]
+CellTagsIndexPosition[     42397,       1080]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Initialization", "Section",
+ CellChangeTimes->{{3.797158887902062*^9, 
+  3.797158892486717*^9}},ExpressionUUID->"1f7a7082-b989-40fc-9d05-\
+2bd42cf1da06"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SetDirectory", "[", 
+  RowBox[{"NotebookDirectory", "[", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.796363800026689*^9, 3.7963638037824507`*^9}, {
+  3.796364175473872*^9, 3.796364187390685*^9}, {3.796364296891387*^9, 
+  3.796364297559819*^9}, {3.796364783899287*^9, 3.796364818750705*^9}, {
+  3.796364882862422*^9, 3.796364898783896*^9}, {3.7963649726626987`*^9, 
+  3.796365000630897*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"bfab25c9-f500-46e8-b7dd-270940f0659b"],
+
+Cell[BoxData["\<\"/Users/lamont/Desktop/HIVScripts/GeneticViremicAnalysis\"\>\
+"], "Output",
+ CellChangeTimes->{
+  3.796365007817956*^9, 3.796704079393244*^9, 3.7967238741005697`*^9, 
+   3.796724119678763*^9, 3.7970655205286093`*^9, 3.800104719668777*^9, 
+   3.800104896110569*^9, {3.800959521897743*^9, 3.8009595396866703`*^9}, 
+   3.800959740712405*^9, 3.800965492155702*^9, 3.8009677790930843`*^9, 
+   3.801456515075199*^9, 3.801456565352495*^9, 3.810222664233099*^9, 
+   3.8102229681079273`*^9, {3.813055352353352*^9, 3.813055374279274*^9}, 
+   3.820146302654237*^9, {3.820644958251048*^9, 3.820644978475679*^9}, 
+   3.822467553402457*^9, 3.822473091219376*^9, 3.8224731251477413`*^9, 
+   3.826888401336338*^9, 3.8268897081114883`*^9, 3.8268962222268248`*^9, 
+   3.8269398779385433`*^9, 3.8269437252780313`*^9, 3.835386320785082*^9, {
+   3.844349953108975*^9, 3.8443499705947523`*^9}, {3.845701545730247*^9, 
+   3.845701560067253*^9}},
+ CellLabel->"Out[1]=",ExpressionUUID->"f7bf8f40-4ebd-458a-b531-da64d1c084ca"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"NotebookEvaluate", "[", 
+   RowBox[{"AbsoluteFileName", "[", "\"\<GeneticFunctions.nb\>\"", "]"}], 
+   "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.7963650483346453`*^9, 3.796365051505557*^9}, {
+  3.796365130434078*^9, 3.7963651470962963`*^9}, {3.796365234238497*^9, 
+  3.796365247095146*^9}, {3.796365300044979*^9, 3.7963653049396677`*^9}, {
+  3.796649151575585*^9, 3.796649151864501*^9}, {3.796649278754632*^9, 
+  3.796649280648334*^9}, {3.796723935070787*^9, 3.796723939854068*^9}, {
+  3.810222703229106*^9, 3.810222703500292*^9}, {3.813074890920075*^9, 
+  3.8130748978405533`*^9}, {3.822466966613155*^9, 3.822466974092606*^9}, {
+  3.845701518281843*^9, 3.8457015307244043`*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"051d3ec1-74b2-46a4-b0f3-f9db5afdf8f6"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", "EnvelopeAminoSequence", "}"}], "=", 
+   RowBox[{"Characters", "[", 
+    RowBox[{"Import", "[", "\"\<GeneticData/env_aa.fasta\>\"", "]"}], "]"}]}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"HxbNucleotides", "=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"hxbnt", ",", "insertions", ",", "fullsequence"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"hxbnt", "=", 
+       RowBox[{"Characters", "[", 
+        RowBox[{
+         RowBox[{
+         "Import", "[", "\"\<GeneticData/combination_aligned_nt.fasta\>\"", 
+          "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      
+      RowBox[{"DeleteCases", "[", 
+       RowBox[{"hxbnt", ",", "\"\<-\>\""}], "]"}]}]}], "]"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.7833660568525467`*^9, 3.783366111559527*^9}, 
+   3.783366208684004*^9, {3.783367196956678*^9, 3.7833673747054987`*^9}, {
+   3.7833674096976433`*^9, 3.783367474321933*^9}, {3.7833677431517267`*^9, 
+   3.783367746454413*^9}, {3.783368476480393*^9, 3.7833684772392597`*^9}, 
+   3.7966496578071012`*^9, 3.796704155212818*^9, 3.7967041959672413`*^9, 
+   3.7971587609223547`*^9, {3.845701531930208*^9, 3.845701533808607*^9}},
+ CellLabel->"In[3]:=",ExpressionUUID->"fffae451-02d6-4270-85e2-6b844962d7cd"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"seq", "=", 
+   RowBox[{
+   "Import", "[", "\"\<GeneticData/combination_aligned_nt.fasta\>\"", "]"}]}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"header", "=", 
+   RowBox[{"Drop", "[", 
+    RowBox[{
+     RowBox[{"Import", "[", 
+      RowBox[{
+      "\"\<GeneticData/combination_aligned_nt.fasta\>\"", ",", 
+       "\"\<Header\>\""}], "]"}], ",", "1"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"seqmat", "=", 
+   RowBox[{"Drop", "[", 
+    RowBox[{
+     RowBox[{"Transpose", "[", 
+      RowBox[{"Select", "[", 
+       RowBox[{
+        RowBox[{"Transpose", "[", 
+         RowBox[{"Characters", "/@", "seq"}], "]"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"First", "[", "#", "]"}], "\[NotEqual]", "\"\<-\>\""}], 
+          ")"}], "&"}]}], "]"}], "]"}], ",", "1"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"length", "=", 
+   RowBox[{"Length", "[", 
+    RowBox[{"seqmat", "[", 
+     RowBox[{"[", "1", "]"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"patientdayseq", "=", 
+   RowBox[{"MapThread", "[", 
+    RowBox[{"Append", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"StringSplit", "[", 
+             RowBox[{"#", ",", "\"\<_\>\""}], "]"}], "[", 
+            RowBox[{"[", "1", "]"}], "]"}], ",", 
+           RowBox[{"ToExpression", "@", 
+            RowBox[{"StringReplace", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"StringSplit", "[", 
+                RowBox[{"#", ",", "\"\<_\>\""}], "]"}], "[", 
+               RowBox[{"[", "2", "]"}], "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"\"\<D\>\"", "\[Rule]", "\"\<1*\>\""}], ",", 
+                RowBox[{"\"\<w\>\"", "\[Rule]", "\"\<7*\>\""}]}], "}"}]}], 
+             "]"}]}]}], "}"}], "&"}], "/@", "header"}], ",", "seqmat"}], 
+      "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"patients", "=", 
+   RowBox[{"DeleteDuplicates", "[", 
+    RowBox[{"First", "/@", "patientdayseq"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"patientSeqs", "[", "patient_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Drop", "[", 
+     RowBox[{"#", ",", "1"}], "]"}], "&"}], "/@", 
+   RowBox[{"Select", "[", 
+    RowBox[{"patientdayseq", ",", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"First", "[", "#", "]"}], "\[Equal]", "patient"}], ")"}], 
+      "&"}]}], "]"}]}]}]}], "Input",
+ CellChangeTimes->{{3.796649782480818*^9, 3.796649796912406*^9}, {
+   3.796706427617622*^9, 3.796706438302684*^9}, {3.796710940461792*^9, 
+   3.796710945364233*^9}, {3.796711002456773*^9, 3.7967111932984133`*^9}, 
+   3.79671122522052*^9, {3.797158764980673*^9, 3.797158769097679*^9}, {
+   3.7971588032304287`*^9, 3.797158803564143*^9}, {3.797158843974762*^9, 
+   3.797158849436097*^9}, {3.797159184302393*^9, 3.797159184632975*^9}, {
+   3.845701535633984*^9, 3.845701537063552*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"9e04d82d-1643-48e1-afed-5bb317853f0b"],
+
+Cell[CellGroupData[{
+
+Cell["Find Coordinate system", "Subsection",
+ CellChangeTimes->{{3.7967204366517763`*^9, 
+  3.79672044205037*^9}},ExpressionUUID->"494bf6b9-32a1-461d-80a5-\
+e0463c98b42d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", "envZeroPosition", "}"}], "=", 
+   RowBox[{
+    RowBox[{"Ordering", "[", 
+     RowBox[{
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"SequenceOverlap", "[", 
+         RowBox[{
+          RowBox[{"EnvelopeAminoSequence", "[", 
+           RowBox[{"[", 
+            RowBox[{"1", " ", ";;", " ", "20"}], "]"}], "]"}], ",", " ", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Partition", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Drop", "[", 
+                 RowBox[{"HxbNucleotides", ",", " ", "ii"}], "]"}], "[", 
+                RowBox[{"[", 
+                 RowBox[{"1", " ", ";;", " ", "60"}], "]"}], "]"}], ",", " ", 
+               "3"}], "]"}], " ", "/.", " ", "codonRules"}], ")"}], "[", 
+           RowBox[{"[", 
+            RowBox[{"1", " ", ";;", " ", "20"}], "]"}], "]"}]}], "]"}], ",", 
+        " ", 
+        RowBox[{"{", 
+         RowBox[{"ii", ",", " ", "0", ",", " ", 
+          RowBox[{
+           RowBox[{"Length", "[", "HxbNucleotides", "]"}], " ", "-", " ", 
+           "60"}]}], "}"}]}], "]"}], ",", " ", 
+      RowBox[{"-", "1"}]}], "]"}], "-", "1"}]}], ";"}]], "Input",
+ CellChangeTimes->{
+  3.7967206133866796`*^9, {3.796720708948822*^9, 3.796720709150298*^9}, {
+   3.796720922133089*^9, 3.796720922362874*^9}},
+ CellLabel->"In[12]:=",ExpressionUUID->"2e023559-14f5-4ef0-ba72-9f1d22777968"],
+
+Cell[BoxData[{
+ RowBox[{"SetAttributes", "[", 
+  RowBox[{"EnvProteinCoordinates", ",", "Listable"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"EnvProteinCoordinates", "[", "envprotein_", "]"}], ":=", 
+  RowBox[{"Range", "[", 
+   RowBox[{
+    RowBox[{"envZeroPosition", "+", 
+     RowBox[{"3", "*", "envprotein"}], "-", "2"}], ",", 
+    RowBox[{"envZeroPosition", "+", 
+     RowBox[{"3", "*", "envprotein"}]}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.796720457455*^9, 3.796720483973503*^9}, {
+  3.7967208568185663`*^9, 3.796720875656979*^9}},
+ CellLabel->"In[13]:=",ExpressionUUID->"445486d2-61c1-4541-a9bb-eeeb46748d88"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Make SNP matrix", "Section",
+ CellChangeTimes->{{3.796711907749835*^9, 
+  3.796711914729109*^9}},ExpressionUUID->"0d11ee1d-788a-4725-82dc-\
+a4e6da4cb6e8"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"SNPPatientDay", "[", 
+    RowBox[{"patient_", ",", "day_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"SNPPatientDay", "[", 
+     RowBox[{"patient", ",", "day"}], "]"}], "=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"seqmat", ",", "snpmat", ",", "zerorulelist"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"seqmat", "=", 
+        RowBox[{"Transpose", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Flatten", "[", 
+            RowBox[{"Drop", "[", 
+             RowBox[{"#", ",", "2"}], "]"}], "]"}], "&"}], "/@", 
+          RowBox[{"Select", "[", 
+           RowBox[{"patientdayseq", ",", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"First", "[", "#", "]"}], "\[Equal]", "patient"}], "&&", 
+               RowBox[{
+                RowBox[{"#", "[", 
+                 RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", "day"}]}], ")"}],
+              "&"}]}], "]"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"zerorulelist", "=", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "1", "]"}], "]"}], "\[Rule]", "0"}], ")"}], "&"}], "/@",
+          "ntRules"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"snpmat", "=", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"First", "/@", "ntRules"}], ")"}], "/.", 
+              RowBox[{"Counts", "[", "#", "]"}]}], ")"}], "/.", 
+            "zerorulelist"}], ")"}], "&"}], "/@", "seqmat"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"With", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"a", "=", "snpmat"}], "}"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"Return", "[", 
+          RowBox[{"Function", "[", 
+           RowBox[{"amino", ",", 
+            RowBox[{"a", "[", 
+             RowBox[{"[", 
+              RowBox[{"EnvProteinCoordinates", "[", "amino", "]"}], "]"}], 
+             "]"}], ",", "Listable"}], "]"}], "]"}]}], "\[IndentingNewLine]", 
+        "]"}], ";"}]}], "]"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.796711916857346*^9, 3.796712088837749*^9}, {
+  3.7967129014064093`*^9, 3.796712974596026*^9}, {3.796719559168521*^9, 
+  3.796719615151455*^9}, {3.796719689115237*^9, 3.7967197179015007`*^9}, {
+  3.796720111168705*^9, 3.796720193212717*^9}, {3.7967209743538094`*^9, 
+  3.796721086207234*^9}, {3.796721120038308*^9, 3.7967211203308353`*^9}},
+ CellLabel->"In[15]:=",ExpressionUUID->"1c04d76c-0f83-4058-8111-4f6abf86ada5"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"PatientDayCounts", "[", 
+     RowBox[{"patient_", ",", "day_"}], "]"}], "[", 
+    RowBox[{"amino_", ",", "start_", ",", "end_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "seqmat", ",", "snpmat", ",", "zerorulelist", ",", "wt", ",", "mut"}], 
+      "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"seqmat", "=", 
+       RowBox[{"Transpose", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Flatten", "[", 
+           RowBox[{"Drop", "[", 
+            RowBox[{"#", ",", "2"}], "]"}], "]"}], "&"}], "/@", 
+         RowBox[{"Select", "[", 
+          RowBox[{"patientdayseq", ",", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"First", "[", "#", "]"}], "\[Equal]", "patient"}], "&&", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", "day"}]}], ")"}], 
+            "&"}]}], "]"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"zerorulelist", "=", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Rule", "[", 
+           RowBox[{"#", ",", "0"}], "]"}], "&"}], "/@", "allCodons"}], 
+        ")"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"wt", "=", 
+       RowBox[{"Total", "[", 
+        RowBox[{"Total", "/@", 
+         RowBox[{"(", 
+          RowBox[{"start", "/.", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"aaCodon", "/.", 
+               RowBox[{"Rule", "@@@", 
+                RowBox[{"(", 
+                 RowBox[{"Tally", "@", 
+                  RowBox[{"Transpose", "[", 
+                   RowBox[{"seqmat", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"EnvProteinCoordinates", "[", "amino", "]"}], 
+                    "]"}], "]"}], "]"}]}], ")"}]}]}], ")"}], "/.", 
+             "zerorulelist"}], ")"}]}], ")"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"mut", "=", 
+       RowBox[{"Total", "[", 
+        RowBox[{"Total", "/@", 
+         RowBox[{"(", 
+          RowBox[{"end", "/.", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"aaCodon", "/.", 
+               RowBox[{"Rule", "@@@", 
+                RowBox[{"(", 
+                 RowBox[{"Tally", "@", 
+                  RowBox[{"Transpose", "[", 
+                   RowBox[{"seqmat", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"EnvProteinCoordinates", "[", "amino", "]"}], 
+                    "]"}], "]"}], "]"}]}], ")"}]}]}], ")"}], "/.", 
+             "zerorulelist"}], ")"}]}], ")"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", 
+       RowBox[{"{", 
+        RowBox[{"wt", ",", "mut"}], "}"}], "]"}]}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.8221300962997417`*^9, 3.8221301014037123`*^9}, {
+  3.822130139029478*^9, 3.822130145100988*^9}, {3.8221309318661003`*^9, 
+  3.822130935581128*^9}, {3.8221309795171833`*^9, 3.8221311054136744`*^9}, {
+  3.822131143387553*^9, 3.822131167510297*^9}, {3.822132215903038*^9, 
+  3.8221322541652822`*^9}, {3.8221323008104687`*^9, 3.822132370368334*^9}},
+ CellLabel->"In[16]:=",ExpressionUUID->"5bdc6931-0716-4d4f-b9c7-befe9a868d01"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"PatientDays", "[", "patient_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"PatientDays", "[", "patient", "]"}], "=", 
+   RowBox[{"Sort", "[", 
+    RowBox[{"DeleteDuplicates", "[", 
+     RowBox[{
+      RowBox[{"Transpose", "[", 
+       RowBox[{"Select", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"Part", "[", 
+            RowBox[{"#", ",", 
+             RowBox[{"{", 
+              RowBox[{"1", ",", "2"}], "}"}]}], "]"}], "&"}], "/@", 
+          "patientdayseq"}], ",", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "patient"}], ")"}], 
+          "&"}]}], "]"}], "]"}], "[", 
+      RowBox[{"[", "2", "]"}], "]"}], "]"}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.796900223896123*^9, 3.796900366133442*^9}},
+ CellLabel->"In[17]:=",ExpressionUUID->"8e05414f-c07f-4210-9c24-3edbd42e2148"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Allelic diversity", "Section",
+ CellChangeTimes->{{3.796900115084382*^9, 
+  3.7969001228936167`*^9}},ExpressionUUID->"0a4e82d1-8ba1-4d4c-b4a2-\
+ff07b61ec817"],
+
+Cell["Function that returns the conserved sites", "Text",
+ CellChangeTimes->{{3.796735277240971*^9, 
+  3.796735285175517*^9}},ExpressionUUID->"8a8b0a42-9980-48c2-a5ed-\
+c64898ae45a9"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"conservedbinary", "[", 
+    RowBox[{"patient_", ",", "day_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"conservedbinary", "[", 
+     RowBox[{"patient", ",", "day"}], "]"}], "=", 
+    RowBox[{"First", "/@", 
+     RowBox[{"Select", "[", 
+      RowBox[{
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"ii", ",", 
+           RowBox[{"SNPBinarFreq", "[", 
+            RowBox[{"patient", ",", "day", ",", "ii"}], "]"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"ii", ",", 
+           RowBox[{"Length", "[", "EnvelopeAminoSequence", "]"}]}], "}"}]}], 
+        "]"}], ",", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"#", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], ">", ".99"}], ")"}], "&"}]}], 
+      "]"}]}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.796721845879405*^9, 3.796721879555458*^9}, {
+  3.796721912767901*^9, 3.796722126166195*^9}, {3.7967236052241373`*^9, 
+  3.79672367168052*^9}},
+ CellLabel->"In[18]:=",ExpressionUUID->"a71dec87-a125-4cd5-be05-196271000fc3"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"conservedfourfold", "[", 
+    RowBox[{"patient_", ",", "day_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"conservedfourfold", "[", 
+     RowBox[{"patient", ",", "day"}], "]"}], "=", 
+    RowBox[{"First", "/@", 
+     RowBox[{"Select", "[", 
+      RowBox[{
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"ii", ",", 
+           RowBox[{"SNPFourfoldFreq", "[", 
+            RowBox[{"patient", ",", "day", ",", "ii"}], "]"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"ii", ",", 
+           RowBox[{"Length", "[", "EnvelopeAminoSequence", "]"}]}], "}"}]}], 
+        "]"}], ",", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"#", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], ">", ".99"}], ")"}], "&"}]}], 
+      "]"}]}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.796721845879405*^9, 3.796721879555458*^9}, {
+   3.796721912767901*^9, 3.796722126166195*^9}, {3.7967236052241373`*^9, 
+   3.79672367168052*^9}, {3.796735062576911*^9, 3.796735092694652*^9}, 
+   3.79673687606913*^9},
+ CellLabel->"In[19]:=",ExpressionUUID->"e23bf5c9-17fd-43ea-b1b5-2e9f314ff226"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"BernoulliCounts", "[", 
+   RowBox[{"patient_", ",", "day_", ",", "amino_"}], "]"}], ":=", 
+  RowBox[{"Part", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"SNPPatientDay", "[", 
+       RowBox[{"patient", ",", "day"}], "]"}], "[", "amino", "]"}], "[", 
+     RowBox[{"[", "3", "]"}], "]"}], 
+    RowBox[{"(*", 
+     RowBox[{
+     "Look", " ", "at", " ", "the", " ", "third", " ", "position", " ", "in", 
+      " ", "the", " ", "codon"}], "*)"}], ",", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Part", "[", 
+         RowBox[{"#", ",", "3"}], "]"}], "&"}], "/@", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"AAs", "[", 
+          RowBox[{"[", 
+           RowBox[{"Sequence", "@@", 
+            RowBox[{"Ordering", "[", 
+             RowBox[{
+              RowBox[{"SNPAAfreq", "[", 
+               RowBox[{"patient", ",", "day", ",", "amino"}], "]"}], ",", 
+              RowBox[{"-", "1"}]}], "]"}]}], "\[IndentingNewLine]", 
+           RowBox[{"(*", 
+            RowBox[{
+             RowBox[{
+             "Look", " ", "at", " ", "the", " ", "most", " ", "common", " ", 
+              "amino", " ", "acid"}], ",", " ", 
+             RowBox[{"find", " ", 
+              RowBox[{"it", "'"}], "s", " ", "name", " ", "and", " ", 
+              RowBox[{"it", "'"}], "s", " ", "codon"}], ",", " ", 
+             RowBox[{
+             "take", " ", "the", " ", "codon", " ", "letters", " ", "in", " ",
+               "the", " ", "third", " ", "postion", " ", "and", " ", 
+              "convert", " ", "to", " ", "indices", " ", "in", " ", 
+              "ntRules"}]}], "*)"}], "]"}], "]"}], "/.", "aaCodon"}], ")"}]}],
+       ")"}], "/.", "ntRules"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.793601034814502*^9, 3.7936010503508167`*^9}, {
+   3.79360114453718*^9, 3.793601194419449*^9}, {3.7936012245596943`*^9, 
+   3.7936012658137007`*^9}, 3.796723362074341*^9, {3.7967234900214357`*^9, 
+   3.796723509579135*^9}, {3.7967235403997507`*^9, 3.796723562562643*^9}, {
+   3.796726608366376*^9, 3.796726617249597*^9}},
+ CellLabel->"In[20]:=",ExpressionUUID->"96c0ad42-0ea6-4bae-bed3-8cd1c624ffbc"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"TwofoldList", "[", 
+    RowBox[{"patient_", ",", "day_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"TwofoldList", "[", 
+     RowBox[{"patient", ",", "day"}], "]"}], "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"BernoulliCounts", "[", 
+       RowBox[{"patient", ",", "day", ",", "ii"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"ii", ",", 
+        RowBox[{"conservedbinary", "[", 
+         RowBox[{"patient", ",", "day"}], "]"}]}], "}"}]}], "]"}]}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.79672359238929*^9, 3.7967235961667643`*^9}, {
+   3.796723681209282*^9, 3.796723758799604*^9}, 3.800104778207659*^9},
+ CellLabel->"In[21]:=",ExpressionUUID->"e1dfabb1-9c82-4f56-88d2-a2b4d652a9c7"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"FourfoldList", "[", 
+    RowBox[{"patient_", ",", "day_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"FourfoldList", "[", 
+     RowBox[{"patient", ",", "day"}], "]"}], "=", "\[IndentingNewLine]", 
+    RowBox[{"Table", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"Total", "[", 
+         RowBox[{"Part", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"SNPPatientDay", "[", 
+              RowBox[{"patient", ",", "day"}], "]"}], "[", "ii", "]"}], "[", 
+            RowBox[{"[", "3", "]"}], "]"}], ",", 
+           RowBox[{"p", "/.", "ntRules"}]}], "]"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"p", ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"\"\<A\>\"", ",", "\"\<G\>\""}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"\"\<C\>\"", ",", "\"\<T\>\""}], "}"}]}], "}"}]}], 
+         "}"}]}], "]"}], "\[IndentingNewLine]", ",", 
+      RowBox[{"{", 
+       RowBox[{"ii", ",", 
+        RowBox[{"conservedfourfold", "[", 
+         RowBox[{"patient", ",", "day"}], "]"}]}], "}"}]}], "]"}]}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.788162562079246*^9, 3.7881625723013973`*^9}, 
+   3.7881626125557613`*^9, {3.788162721849897*^9, 3.788162799060422*^9}, {
+   3.796735360368545*^9, 3.796735412458523*^9}, {3.796735471135079*^9, 
+   3.796735479950796*^9}, {3.7967359557517643`*^9, 3.796735981370813*^9}, {
+   3.796736016228836*^9, 3.796736025482522*^9}, {3.796736060522051*^9, 
+   3.796736090198825*^9}, {3.7967361310871353`*^9, 3.796736136512178*^9}, {
+   3.7967362174392757`*^9, 3.7967362195750513`*^9}, {3.796736826806286*^9, 
+   3.7967368276033077`*^9}, {3.796737026742379*^9, 3.796737052394909*^9}, 
+   3.800104773893475*^9},
+ CellLabel->"In[22]:=",ExpressionUUID->"815193e8-851e-41f8-b0c3-262efc2f4bad"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Get transition/transversion diversities", "Section",
+ CellChangeTimes->{{3.820143854527095*^9, 
+  3.8201438664247637`*^9}},ExpressionUUID->"746500b1-b5e7-4f44-9138-\
+24c9e63a545a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Neutral\[Theta]ts", "[", 
+   RowBox[{"patient_", ",", "day_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Neutral\[Theta]ts", "[", 
+    RowBox[{"patient", ",", "day"}], "]"}], "=", "\[IndentingNewLine]", 
+   RowBox[{"FindNeutral\[Theta]", "[", 
+    RowBox[{"TwofoldList", "[", 
+     RowBox[{"patient", ",", "day"}], "]"}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.811563393242206*^9, 3.81156341533018*^9}, {
+   3.8115635035187674`*^9, 3.811563531358118*^9}, 3.811563571447402*^9, 
+   3.8115668869357443`*^9, {3.8125194117145767`*^9, 3.812519428178618*^9}, {
+   3.822120019312873*^9, 3.8221200604968967`*^9}, 3.822129577351403*^9},
+ CellLabel->"In[23]:=",ExpressionUUID->"49437288-4e3d-4e35-89a8-9055fc573bfd"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Neutral\[Theta]tv", "[", 
+   RowBox[{"patient_", ",", "day_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Neutral\[Theta]tv", "[", 
+    RowBox[{"patient", ",", "day"}], "]"}], "=", "\[IndentingNewLine]", 
+   RowBox[{
+    FractionBox["1", "2"], 
+    RowBox[{"FindNeutral\[Theta]", "[", 
+     RowBox[{"FourfoldList", "[", 
+      RowBox[{"patient", ",", "day"}], "]"}], "]"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.811563438017293*^9, 3.811563474718508*^9}, {
+  3.811563545329668*^9, 3.811563582327818*^9}, {3.811682475811152*^9, 
+  3.811682477025955*^9}, {3.8125194435276117`*^9, 3.812519450487719*^9}, {
+  3.822120062811287*^9, 3.822120067926427*^9}},
+ CellLabel->"In[24]:=",ExpressionUUID->"5ee1b8fc-87c6-47dc-bbfd-1dcdccec0909"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"transversionRatio", "=", 
+  RowBox[{
+   RowBox[{
+    FractionBox[
+     RowBox[{"#", "[", 
+      RowBox[{"[", "1", "]"}], "]"}], 
+     RowBox[{"#", "[", 
+      RowBox[{"[", "2", "]"}], "]"}]], "&"}], "@", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"Eigenvectors", "[", 
+      RowBox[{"Total", "@", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"{", "x", "}"}], "\[Transpose]"}], ".", 
+          RowBox[{"{", "x", "}"}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", 
+           RowBox[{"Join", "@@", 
+            RowBox[{"Table", "[", 
+             RowBox[{
+              RowBox[{"Table", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"Neutral\[Theta]ts", "[", 
+                   RowBox[{"patient", ",", "day"}], "]"}], ",", 
+                  RowBox[{"Neutral\[Theta]tv", "[", 
+                   RowBox[{"patient", ",", "day"}], "]"}]}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"day", ",", 
+                  RowBox[{"PatientDays", "[", "patient", "]"}]}], "}"}]}], 
+               "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"patient", ",", "patients"}], "}"}]}], "]"}]}]}], 
+          "}"}]}], "]"}]}], "]"}], "[", 
+     RowBox[{"[", "1", "]"}], "]"}], ")"}]}]}]], "Input",
+ CellChangeTimes->{{3.800277417199144*^9, 3.800277437209202*^9}, {
+  3.800277536892848*^9, 3.800277540110289*^9}, {3.81168258646944*^9, 
+  3.811682642560215*^9}, {3.8116826803118753`*^9, 3.8116827406578503`*^9}, {
+  3.812519467579569*^9, 3.812519480282119*^9}, {3.822120076091359*^9, 
+  3.8221200791292763`*^9}},
+ CellLabel->"In[25]:=",ExpressionUUID->"8e996da1-cec1-463f-922d-94cecbfcff6a"],
+
+Cell[BoxData["8.434333401512019`"], "Output",
+ CellChangeTimes->{3.822473217362238*^9, 3.826889798097683*^9, 
+  3.826896310035409*^9, 3.826939969670743*^9, 3.826943811952025*^9, 
+  3.8353873933649406`*^9, 3.8443501320638523`*^9, 3.845702463891644*^9},
+ CellLabel->"Out[25]=",ExpressionUUID->"7b4a7a38-b923-4184-bc56-17a81f8da3e4"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\[Theta]ts", "[", 
+   RowBox[{"patient_", ",", "day_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Neutral\[Theta]ts", "[", 
+       RowBox[{"patient", ",", "day"}], "]"}], ",", 
+      RowBox[{"Neutral\[Theta]tv", "[", 
+       RowBox[{"patient", ",", "day"}], "]"}]}], "}"}], ".", 
+    RowBox[{"Normalize", "[", 
+     RowBox[{"{", 
+      RowBox[{"transversionRatio", ",", "1"}], "}"}], "]"}]}], "*", 
+   RowBox[{
+    RowBox[{"Normalize", "[", 
+     RowBox[{"{", 
+      RowBox[{"transversionRatio", ",", "1"}], "}"}], "]"}], "[", 
+    RowBox[{"[", "1", "]"}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.811682869110849*^9, 3.8116828900703163`*^9}, {
+  3.811682933213785*^9, 3.8116829997701473`*^9}, {3.81168328587798*^9, 
+  3.811683287968721*^9}, {3.822128886105722*^9, 3.822128898277947*^9}, {
+  3.822129585469831*^9, 3.822129587342898*^9}},
+ CellLabel->"In[26]:=",ExpressionUUID->"aaa659e4-ed06-49fa-9b84-3393dacf226c"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"dict", "=", 
+   RowBox[{
+   "ImportStructuredHDF5", "[", "\"\<../H5Output/snpanalysis.h5\>\"", "]"}]}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sites3BNC", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"site", "[", "\"\<loc\>\"", "]"}], ",", 
+       RowBox[{"Sequence", "@@", 
+        RowBox[{"site", "[", "\"\<wt_mut_aa\>\"", "]"}]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"site", ",", 
+       RowBox[{"dict", "[", "\"\<3BNC117\>\"", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sites1074", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"site", "[", "\"\<loc\>\"", "]"}], ",", 
+       RowBox[{"Sequence", "@@", 
+        RowBox[{"site", "[", "\"\<wt_mut_aa\>\"", "]"}]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"site", ",", 
+       RowBox[{"dict", "[", "\"\<10-1074\>\"", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.8221313484590263`*^9, 3.8221314043377333`*^9}, {
+  3.822131684739283*^9, 3.822131702275441*^9}, {3.8224672995823727`*^9, 
+  3.8224673220237837`*^9}, {3.8224729126811647`*^9, 3.822472913038508*^9}, {
+  3.845702281412274*^9, 3.845702299094553*^9}, {3.845702495053074*^9, 
+  3.845702500492502*^9}},
+ CellLabel->"In[32]:=",ExpressionUUID->"925ad58a-8a24-4047-9a12-b5f9af4bc985"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"geneticdata", "=", 
+   RowBox[{"Association", "@@", 
+    RowBox[{"Table", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"pat", "\[Rule]", "\[IndentingNewLine]", 
+       RowBox[{"Association", "@@", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"\"\<day\>\"", "<>", 
+            RowBox[{"ToString", "[", "d", "]"}]}], "\[Rule]", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Association", "[", 
+            RowBox[{
+             RowBox[{"\"\<day\>\"", "\[Rule]", "d"}], ",", 
+             "\[IndentingNewLine]", 
+             RowBox[{"\"\<theta\>\"", "->", 
+              RowBox[{"\[Theta]ts", "[", 
+               RowBox[{"pat", ",", "d"}], "]"}]}], ",", "\[IndentingNewLine]", 
+             RowBox[{"\"\<countdata\>\"", "\[Rule]", "\[IndentingNewLine]", 
+              RowBox[{"Association", "@", 
+               RowBox[{"Table", "[", "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"\"\<site\>\"", "<>", 
+                   RowBox[{"ToString", "[", 
+                    RowBox[{"s", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "\[Rule]", 
+                  RowBox[{
+                   RowBox[{"PatientDayCounts", "[", 
+                    RowBox[{"pat", ",", "d"}], "]"}], "[", 
+                   RowBox[{"Sequence", "@@", "s"}], "]"}]}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"s", ",", 
+                   RowBox[{"Join", "[", 
+                    RowBox[{"sites3BNC", ",", "sites1074"}], "]"}]}], "}"}]}],
+                 "]"}]}]}]}], "\[IndentingNewLine]", "]"}]}], 
+          "\[IndentingNewLine]", ",", 
+          RowBox[{"{", 
+           RowBox[{"d", ",", 
+            RowBox[{"PatientDays", "[", "pat", "]"}]}], "}"}]}], "]"}]}]}], 
+      ",", 
+      RowBox[{"{", 
+       RowBox[{"pat", ",", "patients"}], "}"}]}], "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ExportStructuredHDF5", "[", 
+   RowBox[{
+   "\"\<../H5Output/trialanalysiscombogenetic.h5\>\"", ",", "geneticdata"}], 
+   "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.822129368269244*^9, 3.82212937737142*^9}, {
+  3.82212942543006*^9, 3.822129535165081*^9}, {3.8221295933242607`*^9, 
+  3.822129612448888*^9}, {3.822129651629781*^9, 3.8221297021435623`*^9}, {
+  3.8221312847373657`*^9, 3.822131328995173*^9}, {3.822131656364216*^9, 
+  3.822131659753099*^9}, {3.822131722286916*^9, 3.8221317799979753`*^9}, {
+  3.822132182874357*^9, 3.8221321961368856`*^9}, {3.822132546757484*^9, 
+  3.822132560776465*^9}, {3.8224674999107847`*^9, 3.822467503997117*^9}, {
+  3.822472917075108*^9, 3.822472933958008*^9}, {3.826941131860507*^9, 
+  3.826941138328624*^9}, {3.84570230792586*^9, 3.845702310301537*^9}},
+ CellLabel->"In[35]:=",ExpressionUUID->"263cce34-a5e7-4275-a1cf-ec8d4f37942f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Rebound Analysis", "Section",
+ CellChangeTimes->{{3.799584517986391*^9, 
+  3.799584521907889*^9}},ExpressionUUID->"5ac591bf-d2ab-44e2-a98d-\
+34f211f25246"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"geneticdata", "=", 
+   RowBox[{
+   "ImportStructuredHDF5", "[", 
+    "\"\<../H5Output/trialanalysiscombogenetic.h5\>\"", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", "file", "}"}], "=", 
+   RowBox[{
+   "Import", "[", "\"\<ViremicData/combination_supp.xlsx\>\"", "]"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.798889175168449*^9, 3.7988892280405607`*^9}, {
+   3.798889287988859*^9, 3.798889307688621*^9}, {3.798891285133066*^9, 
+   3.798891315184458*^9}, {3.798891496668573*^9, 3.7988914994819307`*^9}, {
+   3.798960941488901*^9, 3.7989609672277822`*^9}, {3.798968017401437*^9, 
+   3.798968018497347*^9}, {3.7990801118926687`*^9, 3.7990801174913883`*^9}, 
+   3.799410285043551*^9, {3.826941167341364*^9, 3.826941168626092*^9}, 
+   3.8457023210499573`*^9, {3.8457025826114197`*^9, 3.8457025878090677`*^9}},
+ CellLabel->"In[43]:=",ExpressionUUID->"5c8aa59b-05cb-4c7f-aae1-5db749f3c768"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"text", "=", 
+   RowBox[{"file", "[", 
+    RowBox[{"[", 
+     RowBox[{"1", ",", "2"}], "]"}], "]"}]}], ";", 
+  RowBox[{"soc", "=", 
+   RowBox[{"Association", "[", 
+    RowBox[{"Apply", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Rule", "[", 
+        RowBox[{
+         RowBox[{"#1", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], ",", "#2"}], "]"}], "&"}], ",", 
+      RowBox[{"Partition", "[", 
+       RowBox[{
+        RowBox[{"SplitBy", "[", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"file", "/.", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"patient_", ",", "text", ",", "__"}], "}"}], 
+             "\[RuleDelayed]", 
+             RowBox[{"StringReplace", "[", 
+              RowBox[{
+               RowBox[{"ToString", "[", "patient", "]"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"\"\<.\>\"", "\[Rule]", "\"\<\>\""}], "}"}]}], 
+              "]"}]}]}], ")"}], ",", "StringQ"}], "]"}], ",", "2"}], "]"}], 
+      ",", 
+      RowBox[{"{", "1", "}"}]}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.826888683710722*^9, 3.826888689221758*^9}, {
+  3.826888801688459*^9, 3.8268888165070333`*^9}, {3.826891241935244*^9, 
+  3.826891247228344*^9}},
+ CellLabel->"In[46]:=",ExpressionUUID->"f6b9f549-ce3d-46c2-abb1-89dfb40e1828"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"soc1", "=", 
+   RowBox[{
+    RowBox[{"Function", "[", 
+     RowBox[{"series", ",", 
+      RowBox[{"Select", "[", 
+       RowBox[{"series", ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Total", "[", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"Boole", "[", 
+                RowBox[{"#", ">", "0"}], "]"}], ")"}], "&"}], ")"}], "/@", 
+            RowBox[{
+             RowBox[{"Transpose", "[", "#", "]"}], "[", 
+             RowBox[{"[", "2", "]"}], "]"}]}], "]"}], ">", "3"}], "&"}]}], 
+       "]"}]}], "]"}], "@", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Drop", "[", 
+        RowBox[{"#", ",", 
+         RowBox[{"{", "1", "}"}]}], "]"}], "&"}], "/@", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{"Function", "[", 
+         RowBox[{"set", ",", 
+          RowBox[{"Module", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"days", ",", "counts"}], "}"}], ",", 
+            RowBox[{
+             RowBox[{"days", "=", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"Transpose", "[", "set", "]"}], "[", 
+                 RowBox[{"[", "1", "]"}], "]"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"\"\<Day\>\"", "\[Rule]", "\"\<\>\""}], ",", 
+                  RowBox[{"\"\<(\>\"", "\[Rule]", "\"\<\>\""}], ",", 
+                  RowBox[{"\"\<)\>\"", "\[Rule]", "\"\<\>\""}], ",", 
+                  RowBox[{"\"\<Screen\>\"", "\[Rule]", "\"\<-4\>\""}], ",", 
+                  RowBox[{"\"\<Pre\>\"", "\[Rule]", "\"\<-1\>\""}], ",", 
+                  RowBox[{"\"\<Base\>\"", "\[Rule]", "\"\<\>\""}], ",", 
+                  RowBox[{"\"\<End\>\"", "\[Rule]", "\"\<\>\""}], ",", 
+                  RowBox[{"\"\<Week\>\"", "\[Rule]", "\"\<7*\>\""}], ",", 
+                  RowBox[{"\"\<Pre\>\"", "\[Rule]", "\"\<-1\>\""}], ",", 
+                  RowBox[{"\"\<Base\>\"", "\[Rule]", "\"\<\>\""}], ",", 
+                  RowBox[{"\"\<End\>\"", "\[Rule]", "\"\<\>\""}], ",", 
+                  RowBox[{"\"\<d\>\"", "\[Rule]", "\"\<\>\""}], ",", 
+                  RowBox[{"\"\<Wk\>\"", "\[Rule]", "\"\<7*\>\""}]}], "}"}]}], 
+               "]"}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"counts", "=", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+                RowBox[{"ToString", "/@", 
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"Transpose", "[", "set", "]"}], "[", 
+                   RowBox[{"[", "2", "]"}], "]"}], ")"}]}], ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"\"\<<20\>\"", "\[Rule]", "\"\<0\>\""}], ",", 
+                  RowBox[{"\"\<cp/ml\>\"", "\[Rule]", "\"\<\>\""}], ",", 
+                  RowBox[{"\"\<D\>\"", "\[Rule]", "\"\<\>\""}], ",", 
+                  RowBox[{"\"\<N/A\>\"", "\[Rule]", "\"\<-\>\""}]}], "}"}]}], 
+               "]"}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"DeleteCases", "[", 
+               RowBox[{"{", 
+                RowBox[{"Null", ",", "Null"}], "}"}], "]"}], "@", 
+              RowBox[{"Map", "[", 
+               RowBox[{"ToExpression", ",", "\[IndentingNewLine]", 
+                RowBox[{"Select", "[", 
+                 RowBox[{
+                  RowBox[{"Transpose", "[", 
+                   RowBox[{"{", 
+                    RowBox[{"days", ",", "counts"}], "}"}], "]"}], ",", 
+                  RowBox[{
+                   RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"#", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "\[NotEqual]", 
+                    "\"\<-\>\""}], ")"}], "&"}]}], "]"}], ",", 
+                RowBox[{"{", "2", "}"}]}], "]"}]}]}]}], "]"}]}], "]"}], ",", 
+        "soc"}], "]"}]}], ")"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.8267775919442377`*^9, 3.826777596742548*^9}, {
+   3.826777982726343*^9, 3.826778013432247*^9}, {3.826778090765411*^9, 
+   3.826778125608902*^9}, {3.826778204500924*^9, 3.8267783238406763`*^9}, {
+   3.8267783571633043`*^9, 3.826778522427125*^9}, 3.8267840135275173`*^9, {
+   3.826859816495605*^9, 3.826859870482299*^9}, 3.826859917487358*^9, {
+   3.826872798356495*^9, 3.826872799164568*^9}, {3.826888927794518*^9, 
+   3.826888928097021*^9}, {3.826889114519834*^9, 3.826889122933516*^9}, {
+   3.826889164779338*^9, 3.8268891652551603`*^9}, {3.8268895719627533`*^9, 
+   3.826889606296936*^9}, {3.8268900485347767`*^9, 3.826890048855336*^9}},
+ CellLabel->"In[47]:=",ExpressionUUID->"02786807-e6f1-49bc-a217-0fbdede1d75d"],
+
+Cell[BoxData[
+ RowBox[{"ExportStructuredHDF5", "[", 
+  RowBox[{"\"\<../H5Output/trialanalysiscombo.h5\>\"", ",", 
+   RowBox[{"Association", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"\"\<genetic\>\"", "\[Rule]", "geneticdata"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"\"\<viraemic\>\"", "->", 
+      RowBox[{
+      "Fit\[Lambda]and\[Lambda]2andXassociation", "[", "soc1", "]"}]}]}], 
+    "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.826861401028536*^9, {3.826889940119986*^9, 3.826889940804278*^9}, {
+   3.8457024520966253`*^9, 3.845702453737718*^9}},
+ CellLabel->"In[48]:=",ExpressionUUID->"98ed41e3-393f-448b-8d3e-6288aa9fb72f"]
+}, Open  ]]
+},
+WindowSize->{661, 755},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 159, 3, 67, "Section",ExpressionUUID->"1f7a7082-b989-40fc-9d05-2bd42cf1da06"],
+Cell[CellGroupData[{
+Cell[764, 29, 494, 8, 30, "Input",ExpressionUUID->"bfab25c9-f500-46e8-b7dd-270940f0659b"],
+Cell[1261, 39, 1017, 15, 34, "Output",ExpressionUUID->"f7bf8f40-4ebd-458a-b531-da64d1c084ca"]
+}, Open  ]],
+Cell[2293, 57, 796, 13, 30, "Input",ExpressionUUID->"051d3ec1-74b2-46a4-b0f3-f9db5afdf8f6"],
+Cell[3092, 72, 1382, 32, 157, "Input",ExpressionUUID->"fffae451-02d6-4270-85e2-6b844962d7cd"],
+Cell[4477, 106, 3197, 87, 346, "Input",ExpressionUUID->"9e04d82d-1643-48e1-afed-5bb317853f0b"],
+Cell[CellGroupData[{
+Cell[7699, 197, 171, 3, 54, "Subsection",ExpressionUUID->"494bf6b9-32a1-461d-80a5-e0463c98b42d"],
+Cell[7873, 202, 1455, 37, 115, "Input",ExpressionUUID->"2e023559-14f5-4ef0-ba72-9f1d22777968"],
+Cell[9331, 241, 637, 14, 94, "Input",ExpressionUUID->"445486d2-61c1-4541-a9bb-eeeb46748d88"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10017, 261, 160, 3, 67, "Section",ExpressionUUID->"0d11ee1d-788a-4725-82dc-a4e6da4cb6e8"],
+Cell[10180, 266, 2780, 69, 241, "Input",ExpressionUUID->"1c04d76c-0f83-4058-8111-4f6abf86ada5"],
+Cell[12963, 337, 3415, 86, 451, "Input",ExpressionUUID->"5bdc6931-0716-4d4f-b9c7-befe9a868d01"],
+Cell[16381, 425, 956, 26, 115, "Input",ExpressionUUID->"8e05414f-c07f-4210-9c24-3edbd42e2148"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17374, 456, 164, 3, 67, "Section",ExpressionUUID->"0a4e82d1-8ba1-4d4c-b4a2-ff07b61ec817"],
+Cell[17541, 461, 183, 3, 35, "Text",ExpressionUUID->"8a8b0a42-9980-48c2-a5ed-c64898ae45a9"],
+Cell[17727, 466, 1105, 30, 94, "Input",ExpressionUUID->"a71dec87-a125-4cd5-be05-196271000fc3"],
+Cell[18835, 498, 1185, 31, 94, "Input",ExpressionUUID->"e23bf5c9-17fd-43ea-b1b5-2e9f314ff226"],
+Cell[20023, 531, 2184, 50, 199, "Input",ExpressionUUID->"96c0ad42-0ea6-4bae-bed3-8cd1c624ffbc"],
+Cell[22210, 583, 756, 19, 94, "Input",ExpressionUUID->"e1dfabb1-9c82-4f56-88d2-a2b4d652a9c7"],
+Cell[22969, 604, 1924, 44, 115, "Input",ExpressionUUID->"815193e8-851e-41f8-b0c3-262efc2f4bad"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24930, 653, 186, 3, 67, "Section",ExpressionUUID->"746500b1-b5e7-4f44-9138-24c9e63a545a"],
+Cell[25119, 658, 741, 14, 52, "Input",ExpressionUUID->"49437288-4e3d-4e35-89a8-9055fc573bfd"],
+Cell[25863, 674, 759, 16, 68, "Input",ExpressionUUID->"5ee1b8fc-87c6-47dc-bbfd-1dcdccec0909"],
+Cell[CellGroupData[{
+Cell[26647, 694, 1779, 45, 198, "Input",ExpressionUUID->"8e996da1-cec1-463f-922d-94cecbfcff6a"],
+Cell[28429, 741, 330, 4, 34, "Output",ExpressionUUID->"7b4a7a38-b923-4184-bc56-17a81f8da3e4"]
+}, Open  ]],
+Cell[28774, 748, 996, 24, 94, "Input",ExpressionUUID->"aaa659e4-ed06-49fa-9b84-3393dacf226c"],
+Cell[29773, 774, 1419, 37, 115, "Input",ExpressionUUID->"925ad58a-8a24-4047-9a12-b5f9af4bc985"],
+Cell[31195, 813, 2868, 61, 304, "Input",ExpressionUUID->"263cce34-a5e7-4275-a1cf-ec8d4f37942f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[34100, 879, 161, 3, 67, "Section",ExpressionUUID->"5ac591bf-d2ab-44e2-a98d-34f211f25246"],
+Cell[34264, 884, 1086, 24, 94, "Input",ExpressionUUID->"5c8aa59b-05cb-4c7f-aae1-5db749f3c768"],
+Cell[35353, 910, 1341, 36, 178, "Input",ExpressionUUID->"f6b9f549-ce3d-46c2-abb1-89dfb40e1828"],
+Cell[36697, 948, 4731, 101, 346, "Input",ExpressionUUID->"02786807-e6f1-49bc-a217-0fbdede1d75d"],
+Cell[41431, 1051, 658, 14, 94, "Input",ExpressionUUID->"98ed41e3-393f-448b-8d3e-6288aa9fb72f"]
+}, Open  ]]
+}
+]
+*)
+
