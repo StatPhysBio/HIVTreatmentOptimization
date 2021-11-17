@@ -1,4 +1,3 @@
-using Revise
 using EscapeSimulator
 using HDF5
 using Statistics

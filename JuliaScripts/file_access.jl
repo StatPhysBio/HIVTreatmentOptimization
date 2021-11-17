@@ -1,10 +1,20 @@
+# If you have not yet acquired EscapeSimulator yet, run
+#
+using Pkg
+Pkg.add(url ="/Users/lamont/Desktop/EscapeSimulator")
+##
 using EscapeSimulator
 using HDF5
 using Statistics
-using BenchmarkTools
 using StatsBase
 using Random
+##
 
+datapath = joinpath(@__DIR__,"../H5Output") # set the relative path
+trialpath(x) = datapath*"/trialanalysis$x.h5"
+snpanalysis = datapath*"/snpanalysis.h5"
+trial_list = ["10-1074","3BNC","combo"]
+##
 # Basic parameters of the simulation and their default values.
 # mut_per_gen = 3*1.1*10^(-5), # the base (avg'd) transition rate measured in growth rate
 # decayrate = 0.31,
@@ -69,10 +79,6 @@ end
 # in trial list ["10-1074","3BNC","combo"]
 # "all" uses the pooled diversity estimates.
 
-mainfolder = "/Users/lamont/Dropbox/Colin_ControlTheory/HIV trapping code/"
-snpanalysis = "/Users/lamont/Dropbox/Colin_ControlTheory/HIV trapping code/snpanalysis.h5"
-trialpath(x) = "/Users/lamont/Dropbox/Colin_ControlTheory/HIV trapping code/trialanalysis$x.h5"
-trial_list = ["10-1074","3BNC","combo"]
 
 function trial_antibodies(trial)
     Dict(
@@ -125,22 +131,6 @@ function get_start_theta(trial)
 	end
 end
 
-
-function get_antibody_profile_mle(ab; selection_multiplier = 1.0)
-    # Takes the antibody name as a string
-    # return the mle parameters for the antibody
-    sites = Array{Float64,1}[]
-    h5open(snpanalysis, "r") do fid
-            for site in fid[ab]
-                rs = read(site["rsel"])[1] * selection_multiplier
-                mut = reverse(read(site["mut"])) # [backmut, forwardmut]
-                if rs > 0
-                    push!(sites,vcat(mut...,rs))
-                end
-            end
-    end
-    return sites
-end
 
 function get_antibody_profile_bayes(ab; selection_multiplier = 1.0)
     # return bayes sampled parameters for the antibody
