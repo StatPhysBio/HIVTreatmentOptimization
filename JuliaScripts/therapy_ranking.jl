@@ -1,24 +1,17 @@
-using EscapeSimulator
-using HDF5
-using Statistics
-using BenchmarkTools
-using BitBasis
-using StatsBase
-using Random
 
+using Combinatorics
 include("file_access.jl")
 
 # trialsimulations_statistics.h5 is
-
-h5open("/Users/lamont/Dropbox/Colin_ControlTheory/HIV trapping code/trialsimulations_statistics.h5", "r") do fid
-    global reservoir_factor = read(fid["best_fit_multplier"])
-end
+# If available:
+# h5open("/Users/lamont/Dropbox/Colin_ControlTheory/HIV trapping code/trialsimulations_statistics.h5", "r") do fid
+#     global reservoir_factor = read(fid["best_fit_multplier"])
+# end
 ##
-
-
+global reservoir_factor = 2.07
 ## Combinations
 
-using Combinatorics
+
 
 function rebound_dict(ab_list, n_antibodies; quartile_estimator_samples = 40) 
     out = Dict{Array{String,1},Array{Float64,1}}() 
