@@ -13,14 +13,18 @@ Usually I run these sequentially in VSCode but it should be possible
 $ julia file.jl
 `
   
-2.) bayes_posterior.jl to generate posterior on the fiteness cost
+`bayes_posterior.jl` to generate posterior on the fiteness cost
 	function. This is stored in the same file snpanalysis.h5
-3.) fit_reservoir.jl to perform the fitting 
+	
+`fit_reservoir.jl` to perform the fitting 
 	of the reservoir. You should be able to recover ξ = 2.1.
-4.) simulate_therapy.jl to simulate the result of viral rebounds and 
+	
+`simulate_therapy.jl` to simulate the result of viral rebounds and 
 	compare optimal treatment.
-5.) discrepancy_stats.jl to generate the statistics used in the hypothesis testing
-6.) linkage_simulations.jl to test the inference procedure 
+
+`discrepancy_stats.jl` to generate the statistics used in the hypothesis testing
+
+`linkage_simulations.jl` to test the inference procedure 
 	(calls the Tomoko.jl package which runs longer genomes
 	with symmetric mutation rates)
 
