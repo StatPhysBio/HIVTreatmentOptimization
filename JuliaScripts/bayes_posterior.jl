@@ -8,8 +8,8 @@ In this section we build the results of the analysis of the sites.
 Single threaded and costly, takes about a day to run all the sites.
 =#
 
-filepath = datapath*"/snpanalysis.h5"
-fid = h5open(filepath, "r+")
+file = datapath*"/snpanalysis.h5"
+fid = h5open(file, "r+")
 dictovec(a::Dict) = [a["$i"] for i in 1:length(a)] #auxiliary function for turning dictionaries into Vector
 for ab in fid
     global bayesout = []

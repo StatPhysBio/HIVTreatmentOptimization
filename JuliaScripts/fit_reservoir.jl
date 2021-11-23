@@ -32,10 +32,3 @@ sel_out =
 
 
 ##
-
-h5open("/Users/lamont/Dropbox/Colin_ControlTheory/HIV trapping code/trialsimulations_selection.h5", "w") do fid
-	fid["10-1074"] = out[:,1]
-	fid["3BNC117"] = out[:,2]
-	fid["combo"] = out[:,3]
-	fid["sel_mult"] = sel_mult
-end

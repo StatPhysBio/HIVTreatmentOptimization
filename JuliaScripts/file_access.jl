@@ -1,7 +1,7 @@
 # If you have not yet acquired EscapeSimulator yet, run
 #
 using Pkg
-Pkg.add(url ="/Users/lamont/Desktop/EscapeSimulator")
+Pkg.add(url ="https://github.com/StatPhysBio/EscapeSimulator")
 ##
 using EscapeSimulator
 using HDF5
@@ -30,17 +30,6 @@ trial_list = ["10-1074","3BNC","combo"]
 # This is the main parameter for the initialization of a viral population
 # vp = initialize_viral_population(θ::Float64, ab_profile_list; kwds)
 ab_profile_list_bayes(ablist; selection_multiplier = 1.0) = map(ab->get_antibody_profile_bayes(ab; selection_multiplier), ablist) 
-ab_profile_list_mle(ablist; selection_multiplier = 1.0) = map(ab->get_antibody_profile_mle(ab; selection_multiplier), ablist) 
-
-
-function simulate_trial_mle(trial, ab_list; 
-	n_samples = 10, # *10 from n_runs
-	selection_multiplier = 1.0, diversity_multiplier = 1.0, 
-    kwds...)
-	theta_vec = get_start_theta(trial) .* diversity_multiplier
-	ab_profile_list = ab_profile_list_mle(ab_list; selection_multiplier)
-	trial_rebound_times(theta_vec, ab_profile_list; n_samples, kwds...)
-end
 
 function repeat_minimal_noise(vec, new_length)
     # a function to make the length of a vector longer without doing multinomial draws
