@@ -80,7 +80,6 @@ function trial_traces(trial, ab_list; samples_per_patient = 10,
 end
 
 tt = trial_traces("10-1074",["10-1074"], samples_per_patient = 100, diversity_multiplier=2.07)
-
 fid = h5open(datapath*"/trialsimulations_traces.h5", "w")
 fid["10-1074"] = tt
 close(fid)
