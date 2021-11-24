@@ -13,7 +13,7 @@ global reservoir_factor = 2.07
 
 
 
-function rebound_dict(ab_list, n_antibodies; quartile_estimator_samples = 4) 
+function rebound_dict(ab_list, n_antibodies; quartile_estimator_samples = 10) 
     #generate a dictionary of therapies to exhaustive combinations 
     # of bayesian realizations of rebound probabilities
     out = Dict{Array{String,1},Array{Float64,1}}() 
@@ -21,7 +21,7 @@ function rebound_dict(ab_list, n_antibodies; quartile_estimator_samples = 4)
         list = Float64[]
         for _ in 1:quartile_estimator_samples
 			p = trial_rebound_prob(get_start_theta("all") .* reservoir_factor, 
-                ab_profile_list_bayes(combo); n_samples = 50)
+                ab_profile_list_bayes(combo); n_samples = 50) # 500 total simulations per patient per bayes realization
 			push!(list, p)
         end
         out[combo] = list
@@ -31,7 +31,7 @@ function rebound_dict(ab_list, n_antibodies; quartile_estimator_samples = 4)
 end
 
 function make_refinements!(dictionary; 
-    top = 10, 
+    top = 12, 
     addenda= [["10-1074"],["3BNC117"],["10-1074","3BNC117"]], # anything we want to refine for sure
     quartile_estimator_samples = 4)
     # Identify the top ten treatment candidates to construct more
